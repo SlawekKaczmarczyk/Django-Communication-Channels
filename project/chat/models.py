@@ -10,7 +10,17 @@ class Message(models.Model):
     created_by = models.ForeignKey(User, blank= True, null= True, on_delete=models.SET_NULL)
 
     class Meta:
-        ordering = ('created_at')
+        ordering = ('created_at',)
 
     def __str__(self):
         return f'{self.sent_by}'
+    
+
+class Room(models.Model):
+
+    uuid = models.CharField(max_length=255)
+    client = models.CharField(max_length=255)
+    agent = models.ForeignKey(User, related_name='rooms', blank=True, null=True, on_delete=models.SET_NULL)
+    messages = models.ManyToManyField(Message, blank=True)
+    url = models.CharField(max_length=255, blank=True, null=True)
+    
