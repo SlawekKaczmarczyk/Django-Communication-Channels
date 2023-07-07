@@ -1,4 +1,14 @@
 /**
+ * Variables
+ */
+
+let chatName = ''
+let chatSocket = null
+let chatWindowUrl = window.location.href
+let chatRoomUuid = Math.random().toString(36).slice(2, 12)
+
+
+/**
  * Elements
  */
 
