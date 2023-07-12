@@ -208,3 +208,11 @@ chatJoinElement.onclick = function(e) {
 
     return false
 }
+
+chatSubmitElement.onclick = function(e) {
+    e.preventDefault()
+
+    sendMessage()
+
+    return false
+}
