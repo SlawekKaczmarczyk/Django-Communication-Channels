@@ -53,6 +53,7 @@ function getCookie(name) {
     return cookieValue
 }
 
+
 function sendMessage() {
     chatSocket.send(JSON.stringify({
         'type': 'message',
@@ -131,7 +132,6 @@ function onChatMessage(data) {
 }
 
 
-
 async function joinChatRoom() {
     console.log('joinChatRoom')
 
@@ -183,8 +183,6 @@ async function joinChatRoom() {
 }
 
 
-
-
 /**
  * Event listeners
  */
@@ -198,6 +196,7 @@ chatOpenElement.onclick = function(e) {
     return false
 }
 
+
 chatJoinElement.onclick = function(e) {
     e.preventDefault()
 
@@ -209,10 +208,27 @@ chatJoinElement.onclick = function(e) {
     return false
 }
 
+
 chatSubmitElement.onclick = function(e) {
     e.preventDefault()
 
     sendMessage()
 
     return false
+}
+
+
+chatInputElement.onkeyup = function(e) {
+    if (e.keyCode == 13) {
+        sendMessage()
+    }
+}
+
+
+chatInputElement.onfocus = function(e) {
+    chatSocket.send(JSON.stringify({
+        'type': 'update',
+        'message': 'writing_active',
+        'name': chatName
+    }))
 }
